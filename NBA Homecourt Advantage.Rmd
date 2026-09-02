@@ -1,0 +1,22 @@
+---
+title: "NBA Home-court Advantage"
+author: "Renee Watson"
+date: "2026-09-02"
+output:
+  pdf_document: default
+  html_document: default
+data: 09/2/2026
+subtitle: 'DATA 607: Week 1 Assignment'
+---
+
+# NBA Home-court Advantage Analysis
+
+## Approach
+
+In this assignment , I selected a NBA dataset from FiveThirtyEight that contains information about NBA games, including the teams, game location, points scored, and game results. I plan to use this dataset to explore home-court advantage in the NBA.
+
+My plan is to load data into R and select variables related to the team, opponent, game location, points scored, and whether the team won or lost. I will clean and rename variables as needed and compare games results from teams playing at home versus away.
+
+Data Source: <https://raw.githubusercontent.com/reneewatson15/NBA-home-court-advantage-/refs/heads/main/nbaallelo.csv>
+
+<https://data.fivethirtyeight.com>
