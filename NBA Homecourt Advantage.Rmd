@@ -3,9 +3,8 @@ title: "NBA Home-court Advantage"
 author: "Renee Watson"
 date: "2026-09-02"
 output:
-  pdf_document: default
   html_document: default
-data: 09/2/2026
+  pdf_document: default
 subtitle: 'DATA 607: Week 1 Assignment'
 ---
 
@@ -20,3 +19,65 @@ My plan is to load data into R and select variables related to the team, opponen
 Data Source: <https://raw.githubusercontent.com/reneewatson15/NBA-home-court-advantage-/refs/heads/main/nbaallelo.csv>
 
 <https://data.fivethirtyeight.com>
+
+## Codebase
+
+```{r}
+nba <- read.csv("https://raw.githubusercontent.com/reneewatson15/NBA-home-court-advantage-/refs/heads/main/nbaallelo.csv")
+
+str(nba)
+```
+
+
+For this analysis, I selected variables related to the season, teams, game location, points scored, and game result. 
+
+```{r}
+nba_subset <- nba[c("year_id", "date_game", "team_id", "opp_id", "pts", "opp_pts", "game_location", "game_result")]
+
+head(nba_subset)
+```
+
+I changed the names of the variables.
+```{r}
+names(nba_subset) <- c("season", "game_date", "team", "opponent", "team_points", "opponent_points", "game_location", "game_result")
+
+head(nba_subset)
+```
+
+
+## Analysis
+
+To examine home-court advantage, I selected games where the team was playing at home. 
+
+```{r}
+home_games <- nba_subset[nba_subset$game_location == "H", ]
+
+head(home_games)
+```
+
+```{r}
+home_results <- table(home_games$game_result)
+
+home_results
+```
+
+```{r}
+barplot(home_results,
+        main = "NBA Home Game Results",
+        xlab = "Game Result",
+        ylab = "Number of Games")
+```
+
+In the plot, "L" represents a loss and "W" represents a win. Home teams won more games than they lost. 
+
+```{r}
+home_win_percentage <- mean(home_games$game_result == "W") * 100
+
+round(home_win_percentage, 1)
+```
+
+The results show that NBA teams won 62.3% of games when playing at home. 
+
+## Conclusion 
+
+The results of this analysis show that NBA teams won 62.3% of their games when playing at home, suggesting that home-court advantage is present in the historical data. To extend this analysis, I could compare home winning percentages across different NBA seasons or individual teams. I could also use more recent data to determine whether home-court advantage has changed over time. 
